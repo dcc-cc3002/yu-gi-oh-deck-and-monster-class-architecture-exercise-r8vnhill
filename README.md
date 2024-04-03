@@ -48,30 +48,31 @@ implementations.
 ## Provided Code
 
 ```scala
-class Card(val name: String) {
+class cards.Card(val name: String) {
    override def toString: String = s"Card(name='$name')"
 
-   override def equals(obj: Any): Boolean = if (obj.isInstanceOf[Card]) {
-      val other = obj.asInstanceOf[Card]
+   override def equals(obj: Any): Boolean = if (obj.isInstanceOf[cards.Card]) {
+      val other = obj.asInstanceOf[cards.Card]
       name == other.name
    } else {
       false
    }
 
-   override def hashCode(): Int = Objects.hash(classOf[Card].hashCode(), name)
+   override def hashCode(): Int =
+      Objects.hash(classOf[cards.Card].hashCode(), name)
 }
 
 trait Deck {
    val size: Int
-   val cards: List[Card]
+   val cards: List[cards.Card]
 
-   def draw: (Card, Deck)
+   def draw: (cards.Card, Deck)
 
    def shuffled: Deck
 
-   def search(name: String): Option[Card]
+   def search(name: String): Option[cards.Card]
 
-   def addCard(card: Card): Deck
+   def addCard(card: cards.Card): Deck
 
    def removeCard(name: String): Deck
 }
