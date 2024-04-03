@@ -64,7 +64,9 @@ class MainDeckTest extends munit.FunSuite {
     assertEquals(newDeck.cards, expectedCards)
   }
 
-  test("Removing a card returns the same deck if the card does not exist in the deck") {
+  test(
+    "Removing a card returns the same deck if the card does not exist in the deck"
+  ) {
     assert(_deck.isDefined)
     val cardName = "Dark Magician"
     val newDeck = _deck.get.removeCard(cardName)
@@ -72,7 +74,9 @@ class MainDeckTest extends munit.FunSuite {
     assertEquals(newDeck.cards, cards)
   }
 
-  test("Drawing a card returns a tuple with the card and the new deck if the deck is not empty") {
+  test(
+    "Drawing a card returns a tuple with the card and the new deck if the deck is not empty"
+  ) {
     assert(_deck.isDefined)
     val cardDeckTuple = _deck.get.draw
     assert(cardDeckTuple.isDefined)
@@ -80,5 +84,11 @@ class MainDeckTest extends munit.FunSuite {
     val newDeck = cardDeckTuple.get._2
     assertEquals(newDeck.length, nCards - 1)
     assert(newDeck.search(card.name).isEmpty)
+  }
+
+  test("Drawing a card returns None if the deck is empty") {
+    assert(_emptyDeck.isDefined)
+    val cardDeckTuple = _emptyDeck.get.draw
+    assert(cardDeckTuple.isEmpty)
   }
 }
